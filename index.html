@@ -1,0 +1,64 @@
+<!doctype html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script class="env" src="//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.6.3/coffee-script.min.js"></script>
+<script class="env" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+<script class="env" src="//d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+<script class="env" src="http://strd6.github.io/tempest/javascripts/envweb.js"></script>
+<script class="env" src="http://strd6.github.io/require/master.js"></script>
+</head>
+<body>
+<script>;(function(PACKAGE) {
+require = Require.generateFor(PACKAGE)
+require('./main')
+})({
+  "source": {
+    "LICENSE": {
+      "path": "LICENSE",
+      "mode": "100644",
+      "content": "The MIT License (MIT)\n\nCopyright (c) 2013 Daniel X Moore\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of\nthe Software, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS\nFOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR\nCOPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+      "type": "blob"
+    },
+    "README.md": {
+      "path": "README.md",
+      "mode": "100644",
+      "content": "notifications\n=============\n\nNotifications widget\n",
+      "type": "blob"
+    },
+    "main.coffee.md": {
+      "path": "main.coffee.md",
+      "mode": "100644",
+      "content": "A component to handle displaying two streams of messages: notifications and errors.\n\n    Notifications = ->\n\nObservable arrays containing our notices and error streams.\n    \n      notices = Observable([])\n      errors = Observable([])\n\nAn error handler capable of handling many common errors. Still needs work.\n\n      classicError: (request, error, message) ->\n        notices []\n        \n        if request.responseJSON\n          message = JSON.stringify(request.responseJSON, null, 2)\n        else\n          message ?= request\n      \n        errors [message]\n      \n      notify: (message) ->\n        notices [message]\n        errors []\n        \n      push: (message) ->\n        notices.push message\n        \n      errors: erros\n      notices: notices\n        \n      template: require('./template')\n\n    module.exports = Notifications\n",
+      "type": "blob"
+    },
+    "template.haml.md": {
+      "path": "template.haml.md",
+      "mode": "100644",
+      "content": "A simple console to display notification streams.\n\n    .console-wrap\n      %pre.errors\n        - each @errors, (error) ->\n          = error\n      %pre.notices\n        - each @notices, (notice) ->\n          = notice\n",
+      "type": "blob"
+    }
+  },
+  "distribution": {
+    "main": {
+      "path": "main",
+      "content": "(function() {\n  var Notifications;\n\n  Notifications = function() {\n    var errors, notices;\n    notices = Observable([]);\n    errors = Observable([]);\n    return {\n      classicError: function(request, error, message) {\n        notices([]);\n        if (request.responseJSON) {\n          message = JSON.stringify(request.responseJSON, null, 2);\n        } else {\n          if (message == null) {\n            message = request;\n          }\n        }\n        return errors([message]);\n      },\n      notify: function(message) {\n        notices([message]);\n        return errors([]);\n      },\n      push: function(message) {\n        return notices.push(message);\n      },\n      errors: erros,\n      notices: notices,\n      template: require('./template')\n    };\n  };\n\n  module.exports = Notifications;\n\n}).call(this);\n",
+      "type": "blob"
+    },
+    "template": {
+      "path": "template",
+      "content": "module.exports = (function(data) {\n  return (function() {\n    var __attribute, __each, __element, __filter, __on, __pop, __push, __render, __text, __with, _ref;\n    _ref = HAMLjr.Runtime(this), __push = _ref.__push, __pop = _ref.__pop, __attribute = _ref.__attribute, __filter = _ref.__filter, __text = _ref.__text, __on = _ref.__on, __each = _ref.__each, __with = _ref.__with, __render = _ref.__render;\n    __push(document.createDocumentFragment());\n    __element = document.createElement(\"div\");\n    __push(__element);\n    __attribute(__element, \"class\", \"console-wrap\");\n    __element = document.createElement(\"pre\");\n    __push(__element);\n    __attribute(__element, \"class\", \"errors\");\n    __each(this.errors, function(error) {\n      __element = document.createTextNode('');\n      __text(__element, error);\n      __push(__element);\n      return __pop();\n    });\n    __pop();\n    __element = document.createElement(\"pre\");\n    __push(__element);\n    __attribute(__element, \"class\", \"notices\");\n    __each(this.notices, function(notice) {\n      __element = document.createTextNode('');\n      __text(__element, notice);\n      __push(__element);\n      return __pop();\n    });\n    __pop();\n    __pop();\n    return __pop();\n  }).call(data);\n});\n;",
+      "type": "blob"
+    }
+  },
+  "entryPoint": "main",
+  "dependencies": {},
+  "repository": {
+    "full_name": "STRd6/notifications",
+    "branch": "master"
+  },
+  "progenitor": {
+    "url": "http://strd6.github.io/editor/"
+  }
+});</script>
+</body>
+</html>
