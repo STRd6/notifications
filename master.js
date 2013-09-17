@@ -24,7 +24,7 @@
       push: function(message) {
         return notices.push(message);
       },
-      errors: erros,
+      errors: errors,
       notices: notices,
       template: require('./template')
     };
