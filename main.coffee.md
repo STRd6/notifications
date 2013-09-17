@@ -30,7 +30,7 @@ Append a message to the notices.
       push: (message) ->
         notices.push message
         
-      errors: erros
+      errors: errors
       notices: notices
         
       template: require('./template')
