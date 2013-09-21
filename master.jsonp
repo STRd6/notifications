@@ -1,4 +1,4 @@
-{
+window["STRd6/notifications:master"]({
   "source": {
     "LICENSE": {
       "path": "LICENSE",
@@ -137,4 +137,4 @@
   "progenitor": {
     "url": "http://strd6.github.io/editor/"
   }
-}
+});
