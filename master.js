@@ -33,3 +33,5 @@
   module.exports = Notifications;
 
 }).call(this);
+
+//# sourceURL=main.coffee
