@@ -15,13 +15,13 @@ window["distri/notifications:master"]({
     "main.coffee.md": {
       "path": "main.coffee.md",
       "mode": "100644",
-      "content": "Notifications\n=============\n\nA component to handle displaying two streams of messages: notices and errors.\n\n    # TODO: This is a hack for haml-jr runtime\n    global.Observable ?= require \"observable\"\n\n    module.exports = Notifications = ->\n\nObservable arrays containing our notices and error streams.\n\n      notices = Observable([])\n      errors = Observable([])\n\n      self =\n\nAn error handler capable of displaying many common errors. Still needs work.\n\n        classicError: (request, error, message) ->\n          notices []\n\n          if request.responseJSON\n            message = JSON.stringify(request.responseJSON, null, 2)\n          else\n            message ?= request\n\n          errors [message]\n\nClear all previous errors and notices and display the message as a notice.\n\n        notify: (message) ->\n          notices [message]\n          errors []\n\nAppend a message to the notices.\n\n        push: (message) ->\n          notices.push message\n\n        errors: errors\n        notices: notices\n\n      self.view = require('./template')(self)\n\n      return self\n\nDemo\n----\n\n    if PACKAGE.name is \"ROOT\"\n      notifications = Notifications()\n\n      document.body.appendChild(notifications.view)\n\n      notifications.notify(\"cool\")\n",
+      "content": "Notifications\n=============\n\nA component to handle displaying two streams of messages: notices and errors.\n\n    # TODO: This is a hack for haml-jr runtime\n    global.Observable ?= require \"observable\"\n\n    Observable = require \"observable\"\n\n    module.exports = Notifications = ->\n\nObservable arrays containing our notices and error streams.\n\n      notices = Observable([])\n      errors = Observable([])\n\n      self =\n\nAn error handler capable of displaying many common errors. Still needs work.\n\n        classicError: (request, error, message) ->\n          notices []\n\n          if request.responseJSON\n            message = JSON.stringify(request.responseJSON, null, 2)\n          else\n            message ?= request\n\n          errors [message]\n\nClear all previous errors and notices and display the message as a notice.\n\n        notify: (message) ->\n          notices [message]\n          errors []\n\nAppend a message to the notices.\n\n        push: (message) ->\n          notices.push message\n\n        errors: errors\n        notices: notices\n\n      self.view = require('./template')(self)\n\n      return self\n\nDemo\n----\n\n    if PACKAGE.name is \"ROOT\"\n      notifications = Notifications()\n\n      document.body.appendChild(notifications.view)\n\n      notifications.notify(\"cool\")\n",
       "type": "blob"
     },
     "pixie.cson": {
       "path": "pixie.cson",
       "mode": "100644",
-      "content": "version: \"0.3.0\"\nentryPoint: \"main\"\ndependencies:\n  observable: \"distri/observable:v0.1.0\"\n",
+      "content": "version: \"0.3.0-pre.0\"\nentryPoint: \"main\"\ndependencies:\n  observable: \"distri/observable:v0.1.0\"\n",
       "type": "blob"
     },
     "template.haml.md": {
@@ -34,12 +34,12 @@ window["distri/notifications:master"]({
   "distribution": {
     "main": {
       "path": "main",
-      "content": "(function() {\n  var Notifications, notifications;\n\n  if (global.Observable == null) {\n    global.Observable = require(\"observable\");\n  }\n\n  module.exports = Notifications = function() {\n    var errors, notices, self;\n    notices = Observable([]);\n    errors = Observable([]);\n    self = {\n      classicError: function(request, error, message) {\n        notices([]);\n        if (request.responseJSON) {\n          message = JSON.stringify(request.responseJSON, null, 2);\n        } else {\n          if (message == null) {\n            message = request;\n          }\n        }\n        return errors([message]);\n      },\n      notify: function(message) {\n        notices([message]);\n        return errors([]);\n      },\n      push: function(message) {\n        return notices.push(message);\n      },\n      errors: errors,\n      notices: notices\n    };\n    self.view = require('./template')(self);\n    return self;\n  };\n\n  if (PACKAGE.name === \"ROOT\") {\n    notifications = Notifications();\n    document.body.appendChild(notifications.view);\n    notifications.notify(\"cool\");\n  }\n\n}).call(this);\n",
+      "content": "(function() {\n  var Notifications, Observable, notifications;\n\n  if (global.Observable == null) {\n    global.Observable = require(\"observable\");\n  }\n\n  Observable = require(\"observable\");\n\n  module.exports = Notifications = function() {\n    var errors, notices, self;\n    notices = Observable([]);\n    errors = Observable([]);\n    self = {\n      classicError: function(request, error, message) {\n        notices([]);\n        if (request.responseJSON) {\n          message = JSON.stringify(request.responseJSON, null, 2);\n        } else {\n          if (message == null) {\n            message = request;\n          }\n        }\n        return errors([message]);\n      },\n      notify: function(message) {\n        notices([message]);\n        return errors([]);\n      },\n      push: function(message) {\n        return notices.push(message);\n      },\n      errors: errors,\n      notices: notices\n    };\n    self.view = require('./template')(self);\n    return self;\n  };\n\n  if (PACKAGE.name === \"ROOT\") {\n    notifications = Notifications();\n    document.body.appendChild(notifications.view);\n    notifications.notify(\"cool\");\n  }\n\n}).call(this);\n",
       "type": "blob"
     },
     "pixie": {
       "path": "pixie",
-      "content": "module.exports = {\"version\":\"0.3.0\",\"entryPoint\":\"main\",\"dependencies\":{\"observable\":\"distri/observable:v0.1.0\"}};",
+      "content": "module.exports = {\"version\":\"0.3.0-pre.0\",\"entryPoint\":\"main\",\"dependencies\":{\"observable\":\"distri/observable:v0.1.0\"}};",
       "type": "blob"
     },
     "template": {
@@ -56,7 +56,7 @@ window["distri/notifications:master"]({
   "progenitor": {
     "url": "http://strd6.github.io/editor/"
   },
-  "version": "0.3.0",
+  "version": "0.3.0-pre.0",
   "entryPoint": "main",
   "repository": {
     "id": 12908956,
