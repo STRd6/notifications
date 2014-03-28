@@ -6,6 +6,8 @@ A component to handle displaying two streams of messages: notices and errors.
     # TODO: This is a hack for haml-jr runtime
     global.Observable ?= require "observable"
 
+    Observable = require "observable"
+
     module.exports = Notifications = ->
 
 Observable arrays containing our notices and error streams.
