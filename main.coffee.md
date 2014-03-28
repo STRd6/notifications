@@ -4,7 +4,7 @@ Notifications
 A component to handle displaying two streams of messages: notices and errors.
 
     # TODO: This is a hack for haml-jr runtime
-    global.Observable = require "observable"
+    global.Observable ?= require "observable"
 
     module.exports = Notifications = ->
 
