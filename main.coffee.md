@@ -1,38 +1,56 @@
+Notifications
+=============
+
 A component to handle displaying two streams of messages: notices and errors.
 
-    Notifications = ->
+    # TODO: This is a hack for haml-jr runtime
+    global.Observable = require "observable"
+
+    module.exports = Notifications = ->
 
 Observable arrays containing our notices and error streams.
 
       notices = Observable([])
       errors = Observable([])
 
+      self =
+
 An error handler capable of displaying many common errors. Still needs work.
 
-      classicError: (request, error, message) ->
-        notices []
+        classicError: (request, error, message) ->
+          notices []
 
-        if request.responseJSON
-          message = JSON.stringify(request.responseJSON, null, 2)
-        else
-          message ?= request
+          if request.responseJSON
+            message = JSON.stringify(request.responseJSON, null, 2)
+          else
+            message ?= request
 
-        errors [message]
+          errors [message]
 
 Clear all previous errors and notices and display the message as a notice.
 
-      notify: (message) ->
-        notices [message]
-        errors []
+        notify: (message) ->
+          notices [message]
+          errors []
 
 Append a message to the notices.
 
-      push: (message) ->
-        notices.push message
+        push: (message) ->
+          notices.push message
 
-      errors: errors
-      notices: notices
+        errors: errors
+        notices: notices
 
-      template: require('./template')
+      self.view = require('./template')(self)
 
-    module.exports = Notifications
+      return self
+
+Demo
+----
+
+    if PACKAGE.name is "ROOT"
+      notifications = Notifications()
+
+      document.body.appendChild(notifications.view)
+
+      notifications.notify("cool")
