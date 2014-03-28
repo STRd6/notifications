@@ -21,7 +21,7 @@ window["distri/notifications:master"]({
     "pixie.cson": {
       "path": "pixie.cson",
       "mode": "100644",
-      "content": "version: \"0.2.0\"\nentryPoint: \"main\"\ndependencies:\n  observable: \"distri/observable:v0.1.0\"\n",
+      "content": "version: \"0.3.0\"\nentryPoint: \"main\"\ndependencies:\n  observable: \"distri/observable:v0.1.0\"\n",
       "type": "blob"
     },
     "template.haml.md": {
@@ -39,7 +39,7 @@ window["distri/notifications:master"]({
     },
     "pixie": {
       "path": "pixie",
-      "content": "module.exports = {\"version\":\"0.2.0\",\"entryPoint\":\"main\",\"dependencies\":{\"observable\":\"distri/observable:v0.1.0\"}};",
+      "content": "module.exports = {\"version\":\"0.3.0\",\"entryPoint\":\"main\",\"dependencies\":{\"observable\":\"distri/observable:v0.1.0\"}};",
       "type": "blob"
     },
     "template": {
@@ -56,7 +56,7 @@ window["distri/notifications:master"]({
   "progenitor": {
     "url": "http://strd6.github.io/editor/"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "entryPoint": "main",
   "repository": {
     "id": 12908956,
