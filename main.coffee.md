@@ -38,7 +38,7 @@ Clear all previous errors and notices and display the message as a notice.
 Append a message to the notices.
 
         push: (message) ->
-          notices.push message
+          notices.push message + "\n"
 
         errors: errors
         notices: notices
