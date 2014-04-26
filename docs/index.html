@@ -106,7 +106,7 @@ module.exports = <span class="function"><span class="title">Notifications</span>
 
             </div>
             <div class="content"><pre><code class="lang-coffeescript">    push: (message) -&gt;
-      notices.push message
+      notices.push message + <span class="string">"\n"</span>
 
     errors: errors
     notices: notices
