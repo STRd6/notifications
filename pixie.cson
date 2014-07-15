@@ -1,4 +1,4 @@
-version: "0.3.3-pre.0"
+version: "0.3.3"
 entryPoint: "main"
 dependencies:
   observable: "distri/observable:v0.3.1"
