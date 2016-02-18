@@ -59,7 +59,7 @@
   "version": "0.3.3",
   "entryPoint": "main",
   "repository": {
-    "branch": "master",
+    "branch": "v0.3.3",
     "default_branch": "master",
     "full_name": "distri/notifications",
     "homepage": null,
